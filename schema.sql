@@ -16,3 +16,16 @@ create table public.a(
     c int references public.c(id) on delete cascade
 );
 alter table public.a owner to filter_test;
+
+create table public.f(
+  id serial primary key not null
+);
+alter table public.f owner to filter_test;
+
+create table public.d(
+  id serial primary key not null,
+  prefix text not null,
+  code text not null,
+  f int references public.f(id) on delete cascade
+);
+alter table public.d owner to filter_test;

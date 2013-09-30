@@ -1,4 +1,4 @@
-package model;
+package model.fail;
 
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
@@ -14,21 +14,21 @@ import javax.persistence.ManyToOne;
  * @author Brent Douglas <brent.n.douglas@gmail.com>
  */
 @Entity
-@DiscriminatorValue("b")
-@FilterDef(name = "filter", parameters = @ParamDef(name = "c", type = "integer"))
-@Filters({@Filter(name = "filter", condition = " (c is null or c = :c ) ")})
-public class B extends A {
+@DiscriminatorValue("e")
+@FilterDef(name = "f_filter", parameters = @ParamDef(name = "f", type = "integer"))
+@Filters({@Filter(name = "f_filter", condition = " (f is null or f = :f ) ")})
+public class E extends D {
 
-    private C c;
+    private F f;
 
     @ManyToOne
-    @JoinColumn(name = "c", nullable = false)
-    public C getC() {
-        return c;
+    @JoinColumn(name = "f", nullable = false)
+    public F getF() {
+        return f;
     }
 
-    public B setC(final C c) {
-        this.c = c;
+    public E setF(final F f) {
+        this.f = f;
         return this;
     }
 }

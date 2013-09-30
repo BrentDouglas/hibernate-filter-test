@@ -1,4 +1,4 @@
-package model;
+package model.fail;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -17,19 +17,19 @@ import javax.persistence.Table;
  * @author Brent Douglas <brent.n.douglas@gmail.com>
  */
 @Entity
-@Table(name = "a", schema = "public")
+@Table(name = "d", schema = "public")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "prefix")
-@DiscriminatorValue("a")
+@DiscriminatorValue("d")
 @NamedQueries({
-        @NamedQuery(name = "A.all", query = "select a from A a"),
-        @NamedQuery(name = "A.withCode",
-                query = "select a from A a where lower(a.code) = trim(lower(:code)) "
-                        + "or (lower(a.code) || lower(a.prefix)) = trim(lower(:code))"),
-        @NamedQuery(name = "A.search",
-                query = "select a from A a where (lower(a.code) || lower(a.prefix)) like '%' || lower(:value) || '%' order by a.code")
+        @NamedQuery(name = "D.all", query = "select d from D d"),
+        @NamedQuery(name = "D.withCode",
+                query = "select d from D d where lower(d.code) = trim(lower(:code)) "
+                        + "or (lower(d.code) || lower(d.prefix)) = trim(lower(:code))"),
+        @NamedQuery(name = "D.search",
+                query = "select d from D d where (lower(d.code) || lower(d.prefix)) like '%' || lower(:value) || '%' order by d.code")
 })
-public class A {
+public class D {
 
     private int id;
     protected String prefix;
@@ -52,7 +52,7 @@ public class A {
         return prefix;
     }
 
-    public A setPrefix(final String prefix) {
+    public D setPrefix(final String prefix) {
         this.prefix = prefix;
         return this;
     }
@@ -62,7 +62,7 @@ public class A {
         return code;
     }
 
-    public A setCode(final String code) {
+    public D setCode(final String code) {
         this.code = code;
         return this;
     }
